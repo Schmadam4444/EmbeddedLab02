@@ -9,13 +9,13 @@ int main(void)
     int i = 0;
     unsiged char first = 0x05;
     unsigned char second = 0x06;
-    unsigned char holder;
+    unsigned char holder1;
+    unsigned char holder2;
     
     i += 1;
     j -=1;
-    holder = first || second;
-    holder = first && second;
-    
+    holder1 = first || second;
+    holder2 = first && second;
     
     return(0);
 }
