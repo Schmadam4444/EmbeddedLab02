@@ -1,0 +1,21 @@
+#include <msp430.h>
+
+float j = 100;
+
+int main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;               // Stop watchdog timer
+    
+    int i = 0;
+    unsiged char first = 0x05;
+    unsigned char second = 0x06;
+    unsigned char holder;
+    
+    i += 1;
+    j -=1;
+    holder = first || second;
+    holder = first && second;
+    
+    
+    return(0);
+}
