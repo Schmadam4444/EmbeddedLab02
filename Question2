@@ -1,1 +1,19 @@
-Hi : )
+#include <msp430.h> 
+
+int add(int i, int j){
+    int y = i + j;
+    return y;
+}
+
+int main(void)
+{
+	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
+  
+	int a = 5
+	int b = 1;
+  
+	int c = add (a,b);
+  
+	while(1);
+	return 0;
+}
