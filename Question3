@@ -1,0 +1,18 @@
+mov.b 0x4321, R4;
+mov.b 0x4321, R5;
+mov.b 0x4321, R6;
+
+and R4, R6;
+
+cmp R4, R6;
+jeq R4EqualToR6;
+jmp $;
+
+R4EqualToR6:
+	cmp R5, R6;
+	jeq R5EqualToR6;
+	jmp $;
+	
+R5EqualToR6:
+	mov.b 0x0FF0, R9;
+	jmp $;
