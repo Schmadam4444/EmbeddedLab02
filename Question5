@@ -23,43 +23,43 @@ StopWDT     mov.w   #WDTPW|WDTHOLD,&WDTCTL  ; Stop watchdog timer
 ;-------------------------------------------------------------------------------
 ; Main loop here
 ;-------------------------------------------------------------------------------
-mov.w 0x0001, R4
-mov.w 0x0001, R5
+mov.w 0x0001, R4;
+mov.w 0x0001, R5;
 
-cmp R4,R5
-jge GreaterThan
-jl LessThan
-jmp $
+cmp R4,R5;
+jge GreaterThan;
+jl LessThan;
+jmp $;
 
 GreaterThan:
-			jeq Equal
-			call #GreaterThanFunction
-			jmp $
+			jeq Equal;
+			call #GreaterThanFunction;
+			jmp $;
 LessThan:
-			call #LessThanFunction
-			jmp $
+			call #LessThanFunction;
+			jmp $;
 Equal:
-			jmp $
+			jmp $;
 			
 LessThanFunction:
-			mov.w 0x000A, &0x2000
-			mov.w 0x0009, &0x2002
-			mov.w 0x0008, &0x2004
-			mov.w 0x0007, &0x2006
-			mov.w 0x0006, &0x2008
+			mov.w 0x000A, &0x2000;
+			mov.w 0x0009, &0x2002;
+			mov.w 0x0008, &0x2004;
+			mov.w 0x0007, &0x2006;
+			mov.w 0x0006, &0x2008;
 
-			dec R4
-			ret
+			dec R4;
+			ret;
 			
 GreaterThanFuntion:
-			mov.w 0x0001, &0x2000
-			mov.w 0x0002, &0x2002
-			mov.w 0x0003, &0x2004
-			mov.w 0x0004, &0x2006
-			mov.w 0x0005, &0x2008
+			mov.w 0x0001, &0x2000;
+			mov.w 0x0002, &0x2002;
+			mov.w 0x0003, &0x2004;
+			mov.w 0x0004, &0x2006;
+			mov.w 0x0005, &0x2008;
 
-			dec R4
-			ret
+			dec R4;
+			ret;
 ;-------------------------------------------------------------------------------
 ; Stack Pointer definition
 ;-------------------------------------------------------------------------------
@@ -71,4 +71,3 @@ GreaterThanFuntion:
 ;-------------------------------------------------------------------------------
             .sect   ".reset"                ; MSP430 RESET Vector
             .short  RESET
-
