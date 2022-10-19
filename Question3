@@ -23,25 +23,34 @@ StopWDT     mov.w   #WDTPW|WDTHOLD,&WDTCTL  ; Stop watchdog timer
 ;-------------------------------------------------------------------------------
 ; Main loop here
 ;-------------------------------------------------------------------------------
-	mov.b #0A201h,R4;
-	mov.b #0111h,R5;
-	mov.b #0001h,R6;
 
-            and R6,R4;
-            and R6,R5;
+mov.b 0x0001,R4;
+mov.b 0x0001,R5;
+mov.b 0x0001,R6;
 
-            cmp R6,R4;
-			jeq R4equalR6;
-			jne $;
-R4equalR6:
-			cmp R6,R5;
-			jeq R5EqualR6;
+and R6,R4;
+and R6,R5;
+
+cmp R4,R5;
+jeq R4equalR5;
+
+cmp R4, R6;
+jeq R4EqualR6;
+
+cmp R5, R6;
+jeq R4EqualR6;
+
+jne $;
+
+R4EqualR5:
+			mov.w 0x0FF0, R9;
 			jmp $;
-R5EqualR6:
-			mov.w #0FF0h, R9;
-			jmp $
-
-;--------------------------------------------------------------
+			
+R4EqualR6:
+			mov.w ~R9, R10
+			jmp $;
+	
+---------------------------------------------------------------------------------
 ; Stack Pointer definition
 ;-------------------------------------------------------------------------------
             .global __STACK_END
@@ -52,3 +61,4 @@ R5EqualR6:
 ;-------------------------------------------------------------------------------
             .sect   ".reset"                ; MSP430 RESET Vector
             .short  RESET
+            
